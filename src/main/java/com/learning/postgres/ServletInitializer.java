@@ -1,4 +1,4 @@
-package com.learning.Learning;
+package com.learning.postgres;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
