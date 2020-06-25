@@ -15,9 +15,10 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
 	
 	public Employee mapRow(ResultSet rs, int args1) throws SQLException {
 		Employee emp 	 	= 		 new Employee();
-		emp.setEmployeeId(rs.getString("employeeId"));
+		emp.setEmployeeId(rs.getInt("employeeId"));
 		emp.setEmployeeName(rs.getString("employeeName"));
-		emp.setEmployeeAddress(rs.getString("employeeEmail"));
+		emp.setEmployeeEmail(rs.getString("employeeEmail"));
+		emp.setEmployeeAddress(rs.getString("employeeAddress"));
 //		System.out.println("RowMapper = "+ GSON.toJson(emp));
 		return emp;
 	}

@@ -1,7 +1,7 @@
 package com.learning.postgres.entity;
 
 public class Employee {
-	 String employeeId;
+	 int employeeId;
 	 String employeeName;
 	 String employeeEmail;
 	 String employeeAddress;
@@ -14,11 +14,11 @@ public class Employee {
 		 this.employeeEmail 	= 	 	employeeEmail;
 	 }
 	 
-	 public String getEmployeeId() {
+	 public int getEmployeeId() {
 		 return employeeId;
 	 }
 	 
-	 public void setEmployeeId(String employeeId) {
+	 public void setEmployeeId(int employeeId) {
 		 this.employeeId 	 	= 	 	employeeId;
 	 }
 	 

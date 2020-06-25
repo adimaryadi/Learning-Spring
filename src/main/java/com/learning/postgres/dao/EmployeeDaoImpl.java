@@ -36,30 +36,29 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 	
 	public void insertEmployee(Employee emp) {
-		final String sql 	 	 	= 	"insert into employee(employeeId,employeeName,employeeAddress,employeeEmail) values(:employeeId,:employeeName,:employeeEmail,:employeeAddress)";
+		final String sql 	 	 	= 	"insert into employee(employeeName,employeeAddress,employeeEmail) values(:employeeName,:employeeAddress,:employeeEmail)";
 		
 		KeyHolder holder 	 	 	= 	new GeneratedKeyHolder();
 		SqlParameterSource 	 param  =  	new MapSqlParameterSource()
-				.addValue("employeeId", emp.getEmployeeId())
 				.addValue("employeeName", emp.getEmployeeName())
-				.addValue("employeeEmail", emp.getEmployeeName())
-				.addValue("employeeAddress", emp.getEmployeeAddress());
+				.addValue("employeeAddress", emp.getEmployeeAddress())
+				.addValue("employeeEmail", emp.getEmployeeEmail());
 		template.update(sql,param,holder);
-		System.out.print("tempalte = ");
+//		System.out.print("tempalte = ");
 	}
 
 	@Override
 	public void updateEmployee(Employee emp) {
 		// TODO Auto-generated method stub
 		final String sql  	 		 = 	"update employee set employeeName=:employeeName, employeeAddress=:employeeAddress,employeeEmail=:employeeEmail where employeeId=:employeeId";
-		
+//		System.out.print(GSON.toJson(emp));
 		KeyHolder holder 	 		 = 	new GeneratedKeyHolder();
 		SqlParameterSource 	param 	 = 	new MapSqlParameterSource()
-				.addValue("employeeId", emp.getEmployeeId())
 				.addValue("employeeName", emp.getEmployeeName())
+				.addValue("employeeAddress", emp.getEmployeeAddress())
 				.addValue("employeeEmail", emp.getEmployeeEmail())
-				.addValue("employeeAddress", emp.getEmployeeAddress());
-		template.update(sql, param,holder);
+				.addValue("employeeId", emp.getEmployeeId());
+		template.update(sql, param, holder);
 	}
 
 	@Override
@@ -68,10 +67,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		final String sql 	 	 	 	 = 	"update employee set employeeName=:employeeName, employeeAddress=:employeeAddress,employeeEmail=:employeeEmail where employeeId=:employeeId";
 		
 		Map<String,Object> map 	= 	new HashMap<String, Object>();
-		map.put("employeeId", emp.getEmployeeId());
 		map.put("employeeName", emp.getEmployeeName());
-		map.put("employeeEmail", emp.getEmployeeEmail());
 		map.put("employeeAddress", emp.getEmployeeAddress());
+		map.put("employeeEmail", emp.getEmployeeEmail());
+		map.put("employeeId", emp.getEmployeeId());
 //		System.out.println("executeUpdateEmployee = "+ GSON.toJson(map));
 		template.execute(sql, map, new PreparedStatementCallback<Object>() {
 			
@@ -94,6 +93,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			
 			@Override
 			public Object doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
+//				System.out.println(ps);
 				return ps.executeUpdate();
 			}
 		});
